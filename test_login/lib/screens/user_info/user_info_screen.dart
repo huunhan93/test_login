@@ -51,7 +51,7 @@ class UserInfoScreenState extends State<UserInfoScreen>{
       Map<String, dynamic> userJson = jsonDecode(json);
       final tempUser = User.fromJson(userJson);
       UserService().getMember(tempUser.id.toString()).then((value) => {
-        if(value.message == '200'){
+        if(value.statusCode == 200){
           setState(() {
             member = value.data!;
             _controllerFirstName.text = member.firstName!;
@@ -82,7 +82,7 @@ class UserInfoScreenState extends State<UserInfoScreen>{
                 );
                 UserService().updateMember(newUserRequest).then((value) => {
 
-                    if(value.message == '200'){
+                    if(value.statusCode == 200){
                       setState(() {
                           Fluttertoast.showToast(
                               msg: "Update success!",

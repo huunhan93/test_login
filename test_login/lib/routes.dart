@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'screens/pie_chart/pie_chart_sample2.dart';
 import 'screens/home/home_screen.dart';
 import 'screens/init_screen.dart';
 import 'screens/profile/profile_screen.dart';
@@ -12,4 +13,6 @@ final Map<String, WidgetBuilder> routes = {
   HomeScreen.routeName: (context) => const HomeScreen(),
   ProfileScreen.routeName: (context) => const  ProfileScreen(),
   UserInfoScreen.routeName: (context) => const UserInfoScreen(),
+
+  PieChartSample2.routeName: (context) => const PieChartSample2(),
 };
