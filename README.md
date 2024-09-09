@@ -2,6 +2,7 @@
 
 # WEB API NETCORE 8.0 
 - Cần cài đặt NetCore SDK 8.0 , SQL Server 12.0
+- Flutter 3.24.0 ; Dart 3.5.0
 - Mở thư mục src, chạy QLVTNNCMS.sln 
 - Các API nằm ở thư mục QLVTNNCMS.API 
 - Thư mục chưa các Migration kết nối DB ở project QLVTNNCMS.Data
