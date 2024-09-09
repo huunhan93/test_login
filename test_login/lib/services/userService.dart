@@ -24,7 +24,7 @@ class UserService {
       });
 
       if (response.statusCode == 200) {
-        dataRes.message = '200';
+        dataRes.statusCode = 200;
         final member = User.fromJson(jsonDecode(response.body));
         dataRes.data = member;
       } else {
@@ -55,7 +55,7 @@ class UserService {
 
       if (response.statusCode == 200) {
         //final user = UserResponse(id: id, token: token, refreshToken: refreshToken).fromJson(jsonDecode(response.body));
-        dataRes.message = '200';
+        dataRes.statusCode = 200;
         //resp.user = user;
       } else {
         //resp.error = '${response.statusCode} ${response.body}';

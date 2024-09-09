@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'size_config.dart';
 
-const serverName = "10.93.39.73"; //10.0.2.2 for mobile or localhost for desktop app
+const serverName = "192.168.0.195"; //10.0.2.2 for mobile or localhost for desktop app
 const urlBase = "http://$serverName:8084";
 
 
