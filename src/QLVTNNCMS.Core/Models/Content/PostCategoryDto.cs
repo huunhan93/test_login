@@ -14,6 +14,7 @@ namespace QLVTNNCMS.Core.Models.Content
         public DateTime? DateModified { set; get; }
         public string? SeoDescription { set; get; }
         public int SortOrder { set; get; }
+        public int? TotalPost { get; set; }
         public class AutoMapperProfiles : Profile
         {
             public AutoMapperProfiles()

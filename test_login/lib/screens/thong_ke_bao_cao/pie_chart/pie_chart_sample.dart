@@ -1,28 +1,26 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:test_login/src/chart/pie_chart/pie_chart.dart';
-import 'package:test_login/src/chart/pie_chart/pie_chart_data.dart';
 
-import '../../fl_chart.dart';
-import '../../models/category.dart';
-import '../../services/categoryService.dart';
-import '../../size_config.dart';
+import '../../../fl_chart.dart';
+import '../../../models/category.dart';
+import '../../../services/categoryService.dart';
+import '../../../size_config.dart';
 import 'widgets/indicator.dart';
 
-class PieChartSample2 extends StatefulWidget{
-  const PieChartSample2({super.key});
-  static String routeName = "/pie_char ";
+class PieChartSample extends StatefulWidget{
+  const PieChartSample({super.key});
+  static String routeName = "/pie_char";
   @override
   State<StatefulWidget> createState() {
-    return PieChart2State();
+    return PieChartState();
   }
-  
+
 }
 
-class PieChart2State extends State<PieChartSample2>{
-  List<Category> listCategories = [Category(id: "", name: "")];
+class PieChartState extends State<PieChartSample>{
+  List<Category> listCategories = [Category(id: "", iconColor: 0, name: "",totalPost: 0)];
   int touchedIndex = -1;
+  int totalPosts = 0;
 
   @override
   void initState() {
@@ -32,6 +30,23 @@ class PieChart2State extends State<PieChartSample2>{
       if(value.statusCode == 200){
         setState(() {
           listCategories = value.data!;
+          for(int i = 0; i < listCategories.length; i++){
+            totalPosts = totalPosts + listCategories[i].totalPost;
+            Color color;
+            switch (i){
+              case 0 :
+                color = AppColors.contentColorBlue;
+              case 1 :
+                color = AppColors.contentColorYellow;
+              case 2 :
+                color = AppColors.contentColorGreen;
+              case 3 :
+                color = AppColors.contentColorOrange;
+              default:
+                color = AppColors.contentColorPurple;
+            }
+            listCategories[i].iconColor = int.parse(color.toString().split('(0x')[1].split(')')[0], radix: 16);
+          }
         })
       }
     });
@@ -77,19 +92,19 @@ class PieChart2State extends State<PieChartSample2>{
             ),
           ),
           Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ...List.generate(
-                  listCategories.length,
-                    (index) => Padding(padding: const EdgeInsets.only(left: 20),
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ...List.generate(
+                    listCategories.length,
+                        (index) => Padding(padding: const EdgeInsets.only(left: 20),
                       child: Indicator(
-                        color: AppColors.contentColorYellow,
+                        color: new Color(listCategories[index].iconColor!),
                         text: listCategories[index].name,
                         isSquare: true,
                       ),)
-              )
-            ]
+                )
+              ]
           ),
           const SizedBox(
             width: 28,
@@ -100,67 +115,26 @@ class PieChart2State extends State<PieChartSample2>{
   }
 
   List<PieChartSectionData> showingSections() {
-    return List.generate(4, (i) {
+    var i = 0;
+    return List.generate(listCategories.length, (i)
+    {
       final isTouched = i == touchedIndex;
       final fontSize = isTouched ? 25.0 : 16.0;
       final radius = isTouched ? 60.0 : 50.0;
       const shadows = [Shadow(color: Colors.black, blurRadius: 2)];
-      switch (i) {
-        case 0:
-          return PieChartSectionData(
-            color: AppColors.contentColorBlue,
-            value: 10,
-            title: '20%',
-            radius: radius,
-            titleStyle: TextStyle(
-              fontSize: fontSize,
-              fontWeight: FontWeight.bold,
-              color: AppColors.mainTextColor1,
-              shadows: shadows,
-            ),
-          );
-        case 1:
-          return PieChartSectionData(
-            color: AppColors.contentColorYellow,
-            value: 30,
-            title: '30%',
-            radius: radius,
-            titleStyle: TextStyle(
-              fontSize: fontSize,
-              fontWeight: FontWeight.bold,
-              color: AppColors.mainTextColor1,
-              shadows: shadows,
-            ),
-          );
-        case 2:
-          return PieChartSectionData(
-            color: AppColors.contentColorPurple,
-            value: 15,
-            title: '15%',
-            radius: radius,
-            titleStyle: TextStyle(
-              fontSize: fontSize,
-              fontWeight: FontWeight.bold,
-              color: AppColors.mainTextColor1,
-              shadows: shadows,
-            ),
-          );
-        case 3:
-          return PieChartSectionData(
-            color: AppColors.contentColorGreen,
-            value: 15,
-            title: '15%',
-            radius: radius,
-            titleStyle: TextStyle(
-              fontSize: fontSize,
-              fontWeight: FontWeight.bold,
-              color: AppColors.mainTextColor1,
-              shadows: shadows,
-            ),
-          );
-        default:
-          throw Error();
-      }
+
+      return PieChartSectionData(
+        color: new Color(listCategories[i].iconColor),
+        value: listCategories[i].totalPost.toDouble() ?? 0 ,
+        title: (listCategories[i].totalPost.toString() + ""),
+        radius: radius,
+        titleStyle: TextStyle(
+          fontSize: fontSize,
+          fontWeight: FontWeight.bold,
+          color: AppColors.mainTextColor1,
+          shadows: shadows,
+        ),
+      );
     });
   }
 

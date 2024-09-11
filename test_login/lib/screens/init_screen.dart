@@ -8,7 +8,6 @@ import '../constants.dart';
 import '../global.dart';
 import '../helper/keyboard.dart';
 import '../models/user.dart';
-import 'pie_chart/pie_chart_sample2.dart';
 import 'home/home_screen.dart';
 import 'profile/profile_screen.dart';
 

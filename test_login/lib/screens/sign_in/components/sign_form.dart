@@ -65,7 +65,7 @@ class SignFormState extends State<SignForm>{
       Fluttertoast.showToast(
           msg: "Login success!",
           toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
+          gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
           backgroundColor: Colors.green,
           textColor: Colors.white,
@@ -75,11 +75,11 @@ class SignFormState extends State<SignForm>{
       Navigator.pushNamed(context, InitScreen.routeName);
     } else {
       Fluttertoast.showToast(
-          msg: "Login faild!",
+          msg: "Login false!",
           toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
+          gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
+          backgroundColor: kPrimaryColor,
           textColor: Colors.white,
           fontSize: 16.0
       );
@@ -107,7 +107,7 @@ class SignFormState extends State<SignForm>{
                   });
                 },
               ),
-              Text("Remember me"),
+              Text("Lưu đăng nhập"),
               Spacer(),
               // GestureDetector(
               //   onTap: () => Navigator.pushNamed(
@@ -122,16 +122,17 @@ class SignFormState extends State<SignForm>{
           FormError(errors: errors),
           SizedBox(height: getProportionateScreenHeight(20)),
           DefaultButton(
-            text: "Continue",
+            text: "Tiếp tục",
             press: () {
-              // if (_formKey.currentState!.validate()) {
-              //   _formKey.currentState!.save();
-              //   // if all are valid then go to success screen
-              //   KeyboardUtil.hideKeyboard(context);
-              //   Navigator.pushNamed(context, HomeScreen.routeName);
-              // }
-              validateAndSubmit();
-              //Navigator.pushNamed(context, InitScreen.routeName);
+              if (_formKey.currentState!.validate()) {
+                _formKey.currentState!.save();
+                // if all are valid then go to success screen
+                KeyboardUtil.hideKeyboard(context);
+                validateAndSubmit();
+                //Navigator.pushNamed(context, InitScreen.routeName);
+              }
+              //validateAndSubmit();
+
             },
           ),
         ],
@@ -164,8 +165,8 @@ class SignFormState extends State<SignForm>{
         return null;
       },
       decoration: InputDecoration(
-        labelText: "Password",
-        hintText: "Enter your password",
+        labelText: "Mật khẩu",
+        hintText: "Nhập mật khẩu của bạn",
         // If  you are using latest version of flutter then lable text and hint text shown like this
         // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -182,9 +183,9 @@ class SignFormState extends State<SignForm>{
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kEmailNullError);
-        } else if (emailValidatorRegExp.hasMatch(value)) {
-          removeError(error: kInvalidEmailError);
-        }
+        }// else if (emailValidatorRegExp.hasMatch(value)) {
+        //   removeError(error: kInvalidEmailError);
+        // }
         _user.userName = value;
         return null;
       },
@@ -192,15 +193,16 @@ class SignFormState extends State<SignForm>{
         if (value!.isEmpty) {
           addError(error: kEmailNullError);
           return "";
-        } else if (!emailValidatorRegExp.hasMatch(value)) {
-          addError(error: kInvalidEmailError);
-          return "";
         }
+        // else if (!emailValidatorRegExp.hasMatch(value)) {
+        //   addError(error: kInvalidEmailError);
+        //   return "";
+        // }
         return null;
       },
       decoration: InputDecoration(
-        labelText: "Username",
-        hintText: "Enter your username",
+        labelText: "Tài khoản",
+        hintText: "Nhập tài khoản của bạn",
         // If  you are using latest version of flutter then lable text and hint text shown like this
         // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,

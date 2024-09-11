@@ -38,6 +38,7 @@ namespace QLVTNNCMS.Api.Controllers.AdminApi
         public async Task<IActionResult> UpdatePostCategory(Guid id, [FromBody] CreateUpdatePostCategoryRequest request)
         {
             var post = await _unitOfWork.PostCategories.GetByIdAsync(id);
+
             if (post == null)
             {
                 return NotFound();
@@ -80,6 +81,9 @@ namespace QLVTNNCMS.Api.Controllers.AdminApi
                 return NotFound();
             }
             var categoryDto = _mapper.Map<PostCategoryDto>(category);
+            int totalPost = _unitOfWork.Posts.GetPostByCategoryPaging(categoryDto.Slug, 1, 10).Result.RowCount;
+            categoryDto.TotalPost = totalPost;
+
             return Ok(categoryDto);
         }
 
@@ -90,6 +94,13 @@ namespace QLVTNNCMS.Api.Controllers.AdminApi
             int pageIndex, int pageSize = 10)
         {
             var result = await _unitOfWork.PostCategories.GetAllPaging(keyword, pageIndex, pageSize);
+
+            for(var i = 0; i < result.RowCount; i++)
+            {
+                int totalPost = _unitOfWork.Posts.GetPostByCategoryIdPaging(result.Results[i].Id.ToString(), pageIndex, pageSize).Result.RowCount;
+                result.Results[i].TotalPost = totalPost;
+            }
+
             return Ok(result);
         }
 

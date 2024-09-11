@@ -69,7 +69,7 @@ class UserInfoScreenState extends State<UserInfoScreen>{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("User Info"),
+        title: Text("Thông tin tài khoản"),
         actions: [
           IconButton(
               onPressed: (){
@@ -104,10 +104,12 @@ class UserInfoScreenState extends State<UserInfoScreen>{
       body: Padding(padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
         child: ListView(
           children: [
+            const SizedBox(height: 20),
             TextFormField(
               decoration: const InputDecoration(
                 //hintText: 'What do people call you?',
                 labelText: 'First Name',
+                suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/User.svg")
               ),
               controller: _controllerFirstName,
               onChanged: (String? value) => {
@@ -116,10 +118,12 @@ class UserInfoScreenState extends State<UserInfoScreen>{
                 })
               },
             ),
+            const SizedBox(height: 20),
             TextFormField(
               decoration: const InputDecoration(
                 //hintText: 'What do people call you?',
                 labelText: 'Last Name',
+                suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/User.svg"),
               ),
               controller: _controllerLastName,
               onChanged: (String? value) => {
@@ -128,12 +132,14 @@ class UserInfoScreenState extends State<UserInfoScreen>{
                 })
               },
             ),
+            const SizedBox(height: 20),
             TextFormField(
               keyboardType: TextInputType.number,
               controller: _controllerPhoneNumber,
               decoration: const InputDecoration(
                 //hintText: 'What do people call you?',
                 labelText: 'Phone number',
+                suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Phone.svg")
               ),
               onChanged: (String? value) => {
                 // member.phoneNumber = value!
