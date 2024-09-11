@@ -90,6 +90,13 @@ namespace QLVTNNCMS.Api.Controllers.AdminApi
             int pageIndex, int pageSize = 10)
         {
             var result = await _unitOfWork.PostCategories.GetAllPaging(keyword, pageIndex, pageSize);
+
+            for(var i = 0; i < result.RowCount; i++)
+            {
+                int totalPost = _unitOfWork.Posts.GetPostByCategoryPaging(result.Results[i].Slug, 1, 10).Result.RowCount;
+                result.Results[i].TotalPost = totalPost;
+            }
+
             return Ok(result);
         }
 

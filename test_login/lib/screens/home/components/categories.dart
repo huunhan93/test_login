@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_login/models/category.dart';
+import 'package:test_login/screens/post/post_screen.dart';
 import 'package:test_login/services/categoryService.dart';
 
 class Categories extends StatefulWidget {
@@ -17,7 +18,7 @@ class Categories extends StatefulWidget {
 
 class CategoriesState extends State<Categories>{
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
-  List<Category> listCategories = [Category(id: "", name: "")];
+  List<Category> listCategories = [Category(id: "", iconColor: 0, name: "",totalPost: 0)];
 
   @override
   void initState() {
@@ -34,16 +35,6 @@ class CategoriesState extends State<Categories>{
 
   @override
   Widget build(BuildContext context) {
-    // List<Map<String, dynamic>> categories = [
-    //   {"icon": "assets/icons/Flash Icon.svg", "text": "Flash Deal"},
-    //   {"icon": "assets/icons/Bill Icon.svg", "text": "Bill"},
-    //   {"icon": "assets/icons/Game Icon.svg", "text": "Game"},
-    //   {"icon": "assets/icons/Gift Icon.svg", "text": "Daily Gift"},
-    //   {"icon": "assets/icons/Discover.svg", "text": "More"},
-    //   {"icon": "assets/icons/Discover.svg", "text": "More"},
-    //   {"icon": "assets/icons/Discover.svg", "text": "More"},
-    //   {"icon": "assets/icons/Discover.svg", "text": "More"},
-    // ];
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
@@ -54,7 +45,9 @@ class CategoriesState extends State<Categories>{
                 child: CategoryCard(
                   icon: "assets/icons/Flash Icon.svg",
                   text: listCategories[index].name,
-                  press: () {},
+                  press: () {
+                    Navigator.pushNamed(context, PostScreen.routeName);
+                  },
                 ),)
           ),
         ],

@@ -6,6 +6,7 @@ using QLVTNNCMS.Core.Models;
 using QLVTNNCMS.Core.Repositories;
 using QLVTNNCMS.Data.SeedWorks;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using System.Reflection.PortableExecutable;
 
 namespace QLVTNNCMS.Data.Repositories
 {
@@ -19,6 +20,7 @@ namespace QLVTNNCMS.Data.Repositories
 
         public async Task<PagedResult<PostCategoryDto>> GetAllPaging(string? keyword, int pageIndex = 1, int pageSize = 10)
         {
+            var resultList = new List<PostCategoryDto>();
             var query = _context.PostCategories.AsQueryable();
             if (!string.IsNullOrWhiteSpace(keyword))
             {

@@ -12,5 +12,6 @@ namespace QLVTNNCMS.Core.Repositories
 
         Task<PostCategoryDto> GetBySlug(string slug);
 
+
     }
 }

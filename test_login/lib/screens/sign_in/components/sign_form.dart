@@ -107,7 +107,7 @@ class SignFormState extends State<SignForm>{
                   });
                 },
               ),
-              Text("Remember me"),
+              Text("Lưu đăng nhập"),
               Spacer(),
               // GestureDetector(
               //   onTap: () => Navigator.pushNamed(
@@ -122,7 +122,7 @@ class SignFormState extends State<SignForm>{
           FormError(errors: errors),
           SizedBox(height: getProportionateScreenHeight(20)),
           DefaultButton(
-            text: "Continue",
+            text: "Tiếp tục",
             press: () {
               // if (_formKey.currentState!.validate()) {
               //   _formKey.currentState!.save();
@@ -164,8 +164,8 @@ class SignFormState extends State<SignForm>{
         return null;
       },
       decoration: InputDecoration(
-        labelText: "Password",
-        hintText: "Enter your password",
+        labelText: "Mật khẩu",
+        hintText: "Nhập mật khẩu của bạn",
         // If  you are using latest version of flutter then lable text and hint text shown like this
         // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -199,8 +199,8 @@ class SignFormState extends State<SignForm>{
         return null;
       },
       decoration: InputDecoration(
-        labelText: "Username",
-        hintText: "Enter your username",
+        labelText: "Tài khoản",
+        hintText: "Nhập tài khoản của bạn",
         // If  you are using latest version of flutter then lable text and hint text shown like this
         // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,

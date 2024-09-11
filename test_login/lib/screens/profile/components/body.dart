@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:test_login/screens/thong_ke_bao_cao/thong_ke_bao_cao_screen.dart';
 
 import '../../../global.dart';
 import '../../../helper/keyboard.dart';
@@ -29,17 +30,19 @@ class BodyState extends State<Body>{
             ProfilePic(),
             SizedBox(height: 20),
             ProfileMenu(
-              text: "My Account",
+              text: "Tài khoản của tôi",
               icon: "assets/icons/User Icon.svg",
               press: () => {
                 Navigator.pushNamed(context, UserInfoScreen.routeName)
               },
             ),
-            // ProfileMenu(
-            //   text: "Notifications",
-            //   icon: "assets/icons/Bell.svg",
-            //   press: () {},
-            // ),
+            ProfileMenu(
+              text: "Xem thống kê",
+              icon: "assets/icons/Bell.svg",
+              press: () {
+                Navigator.pushNamed(context, ThongKeBaoCaoScreen.routeName);
+              },
+            ),
             // ProfileMenu(
             //   text: "Settings",
             //   icon: "assets/icons/Settings.svg",
@@ -51,7 +54,7 @@ class BodyState extends State<Body>{
             //   press: () {},
             // ),
             ProfileMenu(
-              text: "Log Out",
+              text: "Đăng xuất",
               icon: "assets/icons/Log out.svg",
               press: () async {
                 final SharedPreferences prefs = await _prefs;

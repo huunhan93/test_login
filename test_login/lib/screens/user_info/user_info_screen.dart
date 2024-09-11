@@ -69,7 +69,7 @@ class UserInfoScreenState extends State<UserInfoScreen>{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("User Info"),
+        title: Text("Thông tin tài khoản"),
         actions: [
           IconButton(
               onPressed: (){
@@ -108,6 +108,7 @@ class UserInfoScreenState extends State<UserInfoScreen>{
               decoration: const InputDecoration(
                 //hintText: 'What do people call you?',
                 labelText: 'First Name',
+                suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/User.svg")
               ),
               controller: _controllerFirstName,
               onChanged: (String? value) => {
@@ -120,6 +121,7 @@ class UserInfoScreenState extends State<UserInfoScreen>{
               decoration: const InputDecoration(
                 //hintText: 'What do people call you?',
                 labelText: 'Last Name',
+                suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/User.svg"),
               ),
               controller: _controllerLastName,
               onChanged: (String? value) => {
@@ -134,6 +136,7 @@ class UserInfoScreenState extends State<UserInfoScreen>{
               decoration: const InputDecoration(
                 //hintText: 'What do people call you?',
                 labelText: 'Phone number',
+                suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Phone.svg")
               ),
               onChanged: (String? value) => {
                 // member.phoneNumber = value!
@@ -141,6 +144,31 @@ class UserInfoScreenState extends State<UserInfoScreen>{
                   member.phoneNumber = value ?? "";
                 })
               },
+            ),
+            TextFormField(
+              keyboardType: TextInputType.phone,
+              //onSaved: (newValue) => phoneNumber = newValue,
+              onChanged: (value) {
+                if (value.isNotEmpty) {
+                  //removeError(error: kPhoneNumberNullError);
+                }
+                return;
+              },
+              validator: (value) {
+                if (value!.isEmpty) {
+                  //addError(error: kPhoneNumberNullError);
+                  return "";
+                }
+                return null;
+              },
+              decoration: const InputDecoration(
+                labelText: "Phone Number",
+                hintText: "Enter your phone number",
+                // If  you are using latest version of flutter then lable text and hint text shown like this
+                // if you r using flutter less then 1.20.* then maybe this is not working properly
+                floatingLabelBehavior: FloatingLabelBehavior.always,
+                suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Phone.svg"),
+              ),
             ),
           ],
 

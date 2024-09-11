@@ -1,18 +1,22 @@
 class Category{
   String id;
   String name;
-  String? iconText;
+  int iconColor;
+  int totalPost;
 
   Category({
   required this.id,
   required this.name,
-  this.iconText});
+    required this.iconColor,
+    required this.totalPost});
 
 
   factory Category.fromJson(Map<String, dynamic> json) {
     return Category(
         id: json['id'],
-        name: json['name']
+        name: json['name'],
+        iconColor: 0,
+        totalPost: json['totalPost'],
     );
   }
 
@@ -20,6 +24,8 @@ class Category{
       {
         'id': id,
         'name': name,
+        'iconColor': iconColor,
+        'totalPost': totalPost,
       };
 
   static Category fromJsonModel(Map<String, dynamic> json) => Category.fromJson(json);
