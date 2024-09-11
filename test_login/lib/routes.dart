@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'screens/category/category_detail_screen.dart';
+import 'screens/category/category_screen.dart';
 import 'screens/home/home_screen.dart';
 import 'screens/init_screen.dart';
 import 'screens/post/post_screen.dart';
@@ -17,4 +19,6 @@ final Map<String, WidgetBuilder> routes = {
   ThongKeBaoCaoScreen.routeName: (context) => const ThongKeBaoCaoScreen(),
 
   PostScreen.routeName: (context) => const PostScreen(),
+  CategoryScreen.routeName: (context) => const  CategoryScreen(),
+  CategoryDetailScreen.routeName: (context) => const  CategoryDetailScreen(),
 };

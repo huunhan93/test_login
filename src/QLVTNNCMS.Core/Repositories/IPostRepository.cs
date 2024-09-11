@@ -21,6 +21,7 @@ namespace QLVTNNCMS.Core.Repositories
         Task<List<PostInListDto>> GetLatestPublishPost(int top);
 
         Task<PagedResult<PostInListDto>> GetPostByCategoryPaging(string categorySlug, int pageIndex = 1, int pageSize = 10);
+        Task<PagedResult<PostInListDto>> GetPostByCategoryIdPaging(string categoryId, int pageIndex = 1, int pageSize = 10);
 
         Task<PostDto> GetBySlug(string slug);
 

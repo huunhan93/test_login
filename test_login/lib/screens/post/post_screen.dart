@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:test_login/models/post.dart';
 
 import '../../components/product_card.dart';
@@ -17,31 +18,37 @@ class PostScreen extends StatelessWidget{
       appBar: AppBar(
         title: Text("Post"),
       ),
-      body: Column(
-        children: [
-          // Text(
-          //   "Favorites",
-          //   style: Theme.of(context).textTheme.titleLarge,
-          // ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: GridView.builder(
-                itemCount: demoProducts.length,
-                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 400,
-                  childAspectRatio: 0.7,
-                  mainAxisSpacing: 20,
-                  crossAxisSpacing: 16,
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: ListView.builder(
+          itemCount: demoProducts.length,
+          itemBuilder: (context, index) => Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            child: Dismissible(
+              key: Key(demoProducts[index].id.toString()),
+              direction: DismissDirection.endToStart,
+              onDismissed: (direction) {
+                // setState(() {
+                //   demoCarts.removeAt(index);
+                // });
+              },
+              background: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFFFE6E6),
+                  borderRadius: BorderRadius.circular(15),
                 ),
-                itemBuilder: (context, index) => PostItem(
-                  post: new Post(id: "id", dateCreated: DateTime.now(), authorUserName: "authorUserName", authorName: "authorName", categorySlug: "categorySlug"),
-                  //onPress: () => {},
+                child: Row(
+                  children: [
+                    const Spacer(),
+                    SvgPicture.asset("assets/icons/Trash.svg"),
+                  ],
                 ),
               ),
+              child: ProductCard( product: demoProducts[index], onPress: () {  },),
             ),
           ),
-        ],
+        ),
       ),
     );
   }

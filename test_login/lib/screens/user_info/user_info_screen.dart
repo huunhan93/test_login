@@ -104,6 +104,7 @@ class UserInfoScreenState extends State<UserInfoScreen>{
       body: Padding(padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
         child: ListView(
           children: [
+            const SizedBox(height: 20),
             TextFormField(
               decoration: const InputDecoration(
                 //hintText: 'What do people call you?',
@@ -117,6 +118,7 @@ class UserInfoScreenState extends State<UserInfoScreen>{
                 })
               },
             ),
+            const SizedBox(height: 20),
             TextFormField(
               decoration: const InputDecoration(
                 //hintText: 'What do people call you?',
@@ -130,6 +132,7 @@ class UserInfoScreenState extends State<UserInfoScreen>{
                 })
               },
             ),
+            const SizedBox(height: 20),
             TextFormField(
               keyboardType: TextInputType.number,
               controller: _controllerPhoneNumber,
@@ -144,31 +147,6 @@ class UserInfoScreenState extends State<UserInfoScreen>{
                   member.phoneNumber = value ?? "";
                 })
               },
-            ),
-            TextFormField(
-              keyboardType: TextInputType.phone,
-              //onSaved: (newValue) => phoneNumber = newValue,
-              onChanged: (value) {
-                if (value.isNotEmpty) {
-                  //removeError(error: kPhoneNumberNullError);
-                }
-                return;
-              },
-              validator: (value) {
-                if (value!.isEmpty) {
-                  //addError(error: kPhoneNumberNullError);
-                  return "";
-                }
-                return null;
-              },
-              decoration: const InputDecoration(
-                labelText: "Phone Number",
-                hintText: "Enter your phone number",
-                // If  you are using latest version of flutter then lable text and hint text shown like this
-                // if you r using flutter less then 1.20.* then maybe this is not working properly
-                floatingLabelBehavior: FloatingLabelBehavior.always,
-                suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Phone.svg"),
-              ),
             ),
           ],
 

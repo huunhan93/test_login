@@ -24,7 +24,7 @@ class PostService {
   Future<ResponseData<List<Post>>> getPost(int pageNumber) async{
     final dataRes = ResponseData<List<Post>>();
     try {
-      final uri = Uri.parse('$urlBase/api/admin/post/paging?pageIndex=$pageNumber&pageSize=5');
+      final uri = Uri.parse('$urlBase/api/admin/post/paging?pageIndex=$pageNumber&pageSize=50');
 
       var response = await http.get(uri, headers: {
         HttpHeaders.authorizationHeader: 'Bearer ${Global.user!.token}',

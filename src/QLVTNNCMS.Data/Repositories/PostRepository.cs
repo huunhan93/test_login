@@ -232,6 +232,31 @@ namespace QLVTNNCMS.Data.Repositories
 
         }
 
+        public async Task<PagedResult<PostInListDto>> GetPostByCategoryIdPaging(string categoryId, int pageIndex = 1, int pageSize = 10)
+        {
+            var query = _context.Posts.AsQueryable();
+
+            if (!string.IsNullOrEmpty(categoryId))
+            {
+                query = query.Where(x => x.CategoryId.ToString().Equals(categoryId));
+            }
+
+            var totalRow = await query.CountAsync();
+
+            query = query.OrderByDescending(x => x.DateCreated)
+               .Skip((pageIndex - 1) * pageSize)
+               .Take(pageSize);
+
+            return new PagedResult<PostInListDto>
+            {
+                Results = await _mapper.ProjectTo<PostInListDto>(query).ToListAsync(),
+                CurrentPage = pageIndex,
+                RowCount = totalRow,
+                PageSize = pageSize
+            };
+
+        }
+
         public async Task<PostDto> GetBySlug(string slug)
         {
             var post = await _context.Posts.FirstOrDefaultAsync(x => x.Slug == slug);

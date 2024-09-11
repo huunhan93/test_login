@@ -31,7 +31,7 @@ class PieChartState extends State<PieChartSample>{
         setState(() {
           listCategories = value.data!;
           for(int i = 0; i < listCategories.length; i++){
-            totalPosts = totalPosts + listCategories[i].totalPost!;
+            totalPosts = totalPosts + listCategories[i].totalPost;
             Color color;
             switch (i){
               case 0 :
@@ -126,7 +126,7 @@ class PieChartState extends State<PieChartSample>{
       return PieChartSectionData(
         color: new Color(listCategories[i].iconColor),
         value: listCategories[i].totalPost.toDouble() ?? 0 ,
-        title: (listCategories[i].totalPost.toString() ),
+        title: (listCategories[i].totalPost.toString() + ""),
         radius: radius,
         titleStyle: TextStyle(
           fontSize: fontSize,

@@ -4,6 +4,7 @@ import 'package:test_login/screens/thong_ke_bao_cao/thong_ke_bao_cao_screen.dart
 
 import '../../../global.dart';
 import '../../../helper/keyboard.dart';
+import '../../category/category_screen.dart';
 import '../../user_info/user_info_screen.dart';
 import 'profile_menu.dart';
 import 'profile_pic.dart';
@@ -43,11 +44,13 @@ class BodyState extends State<Body>{
                 Navigator.pushNamed(context, ThongKeBaoCaoScreen.routeName);
               },
             ),
-            // ProfileMenu(
-            //   text: "Settings",
-            //   icon: "assets/icons/Settings.svg",
-            //   press: () {},
-            // ),
+            ProfileMenu(
+              text: "Quản lý loại bài viết",
+              icon: "assets/icons/Settings.svg",
+              press: () {
+                Navigator.pushNamed(context, CategoryScreen.routeName);
+              },
+            ),
             // ProfileMenu(
             //   text: "Help Center",
             //   icon: "assets/icons/Question mark.svg",

@@ -5,6 +5,7 @@ import 'package:test_login/screens/home/components/posts.dart';
 import '../../components/default_button.dart';
 import '../../size_config.dart';
 import 'components/categories.dart';
+import 'components/section_title.dart';
 
 class HomeScreen extends StatelessWidget{
   const HomeScreen({super.key});
@@ -21,6 +22,13 @@ class HomeScreen extends StatelessWidget{
             children: [
               //HomeHeader(),
               //DiscountBanner(),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: SectionTitle(
+                  title: "Loại bài viết",
+                  press: () {},
+                ),
+              ),
               Categories(),
               //SpecialOffers(),
               SizedBox(height: 20),

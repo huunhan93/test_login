@@ -65,7 +65,7 @@ class SignFormState extends State<SignForm>{
       Fluttertoast.showToast(
           msg: "Login success!",
           toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
+          gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
           backgroundColor: Colors.green,
           textColor: Colors.white,
@@ -75,11 +75,11 @@ class SignFormState extends State<SignForm>{
       Navigator.pushNamed(context, InitScreen.routeName);
     } else {
       Fluttertoast.showToast(
-          msg: "Login faild!",
+          msg: "Login false!",
           toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
+          gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
+          backgroundColor: kPrimaryColor,
           textColor: Colors.white,
           fontSize: 16.0
       );
@@ -124,14 +124,15 @@ class SignFormState extends State<SignForm>{
           DefaultButton(
             text: "Tiếp tục",
             press: () {
-              // if (_formKey.currentState!.validate()) {
-              //   _formKey.currentState!.save();
-              //   // if all are valid then go to success screen
-              //   KeyboardUtil.hideKeyboard(context);
-              //   Navigator.pushNamed(context, HomeScreen.routeName);
-              // }
-              validateAndSubmit();
-              //Navigator.pushNamed(context, InitScreen.routeName);
+              if (_formKey.currentState!.validate()) {
+                _formKey.currentState!.save();
+                // if all are valid then go to success screen
+                KeyboardUtil.hideKeyboard(context);
+                validateAndSubmit();
+                //Navigator.pushNamed(context, InitScreen.routeName);
+              }
+              //validateAndSubmit();
+
             },
           ),
         ],
@@ -182,9 +183,9 @@ class SignFormState extends State<SignForm>{
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kEmailNullError);
-        } else if (emailValidatorRegExp.hasMatch(value)) {
-          removeError(error: kInvalidEmailError);
-        }
+        }// else if (emailValidatorRegExp.hasMatch(value)) {
+        //   removeError(error: kInvalidEmailError);
+        // }
         _user.userName = value;
         return null;
       },
@@ -192,10 +193,11 @@ class SignFormState extends State<SignForm>{
         if (value!.isEmpty) {
           addError(error: kEmailNullError);
           return "";
-        } else if (!emailValidatorRegExp.hasMatch(value)) {
-          addError(error: kInvalidEmailError);
-          return "";
         }
+        // else if (!emailValidatorRegExp.hasMatch(value)) {
+        //   addError(error: kInvalidEmailError);
+        //   return "";
+        // }
         return null;
       },
       decoration: InputDecoration(
