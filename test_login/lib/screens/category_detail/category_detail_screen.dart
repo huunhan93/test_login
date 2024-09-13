@@ -67,7 +67,8 @@ class CategoryDetailScreenState extends State<CategoryDetailScreen>{
                             content: Text('Cập nhật thành công'),
                           ),
                         );
-                        Navigator.pop(context);
+                        //Navigator.pop(context);
+                        Navigator.of(context).pop(true);
                       })
                     }
                   });
