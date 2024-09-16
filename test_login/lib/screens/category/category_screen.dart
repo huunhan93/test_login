@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'category_detail_screen.dart';
+import '../category_detail/category_detail_screen.dart';
 import 'components/body.dart';
 
 class CategoryScreen extends StatelessWidget{
@@ -10,9 +9,10 @@ class CategoryScreen extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
-        title: Text("Loại bài viết"),
+        title: const Text("Loại bài viết"),
         actions: [
           IconButton(
               onPressed: (){
@@ -23,14 +23,15 @@ class CategoryScreen extends StatelessWidget{
                       "titleName" : "Thêm mới ",
                       "idCategory" : "",
                     }
-                );
+                ).then((_) => {
+                  BodyState().getCategory()
+                });
               },
               icon: const Icon(Icons.add_box)
           )
         ],
       ),
-      body: Body(),
-      //bottomNavigationBar: CheckoutCard(),
+      body: Body()
     );
   }
 
